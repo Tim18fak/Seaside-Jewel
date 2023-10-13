@@ -4,7 +4,7 @@ require('dotenv').config();
 const mongo_uri = process.env.MONGO_URI;
 
 // Mongoose setup
-mongoose.connect(mongo_uri, {
+const MongoDB = mongoose.connect(mongo_uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
     
@@ -13,11 +13,4 @@ mongoose.connect(mongo_uri, {
 }).catch((err) => {
     console.error("Error connecting to MongoDB Atlas:", err);
 });
-const User = mongoose.model('User', {
-    fullName: String,
-    username: String,
-    hashedPassword: String,
-    phoneNumber: String,
-});
-
-module.exports = User
+module.exports = MongoDB
