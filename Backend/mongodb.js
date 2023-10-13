@@ -1,3 +1,4 @@
+const mongoose = require('mongoose'); // Adding Mongoose for MongoDB
 require('dotenv').config();
 
 const mongo_uri = process.env.MONGO_URI;
