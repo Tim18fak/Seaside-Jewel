@@ -1,14 +1,21 @@
-const http = require('http');
-const User = require('./mongodb')
-const hostname = '127.0.0.1';
-const port = 3000;
+const https = require('https');
+const fs = require('fs');
+const express = require('express');
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\n');
+const app = express();
+
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+  passphrase: 'jewel',
+};
+
+const server = https.createServer(options, app);
+
+server.listen(443, () => {
+  console.log('Server is running on https://localhost');
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.get('/', (req, res) => {
+  res.send('Hello, HTTPS World!');
 });
