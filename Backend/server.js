@@ -7,7 +7,7 @@ const app = express();
 const options = {
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem'),
-  passphrase: 'jewel',
+  passphrase: '',
 };
 
 const server = https.createServer(options, app);
